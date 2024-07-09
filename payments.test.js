@@ -30,7 +30,7 @@ describe("Payments test (with setup and tear-down)", function() {
   
     });
 
-    afterAll(function() {
+    afterEach(function() {
       // teardown logic
       billAmtInput.value='';
       tipAmtInput.value='';

@@ -35,10 +35,21 @@ function updateServerTable() {
     newTr.setAttribute('id', key);
 
     let tipAverage = sumPaymentTotal('tipAmt') / Object.keys(allServers).length;
-
+    
     appendTd(newTr, curServer.serverName);
     appendTd(newTr, '$' + tipAverage.toFixed(2));
+    appendDeleteBtn(newTr);
 
     serverTbody.append(newTr);
   }
 }
+
+serverTbody.addEventListener('click', function(event){
+  if (event.target.tagName==='BUTTON'){
+    //remove that row
+    let removeServer=event.target.parentElement.parentElement.id;
+    delete allServers[removeServer];
+    allServers=allServers;
+    updateServerTable();
+  }
+});
