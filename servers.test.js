@@ -11,6 +11,13 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
+  it('should verify the server is deleted from allServers',function (){
+    deleteSelectedServer(serverNameInput);
+    updateServerTable();
+    expect(Object.keys(allServers).length).toEqual(0);
+
+  });
+
   afterEach(function() {
     // teardown logic
     serverNameInput.value='';

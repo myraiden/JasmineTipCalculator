@@ -55,8 +55,26 @@ function appendPaymentTable(curPayment) {
   appendTd(newTr, '$' + curPayment.billAmt);
   appendTd(newTr, '$' + curPayment.tipAmt);
   appendTd(newTr, curPayment.tipPercent + '%');
+  appendDeleteBtn(newTr);
 
   paymentTbody.append(newTr);
+}
+
+//deletes the row from the payment table
+function UpdatePaymentElement(){
+  paymentTbody.innerHTML = '';
+
+  for (let keyPay in allPayments) {
+    let newTr = document.createElement('tr');
+    newTr.id = 'payment' + keyPay;
+
+    appendTd(newTr, '$' + curPayment.billAmt);
+    appendTd(newTr, '$' + curPayment.tipAmt);
+    appendTd(newTr, curPayment.tipPercent + '%');
+    appendDeleteBtn(newTr);
+
+    paymentTbody.append(newTr);
+  }
 }
 
 // Create table row element and pass to appendTd with calculated sum of all payment
@@ -76,3 +94,16 @@ function updateSummary() {
   summaryTds[2].innerHTML =  Math.round(tipPercentAvg) + '%';
 }
 
+paymentTbody.addEventListener('click', function(event){
+  if (event.target.tagName==='BUTTON'){
+    deleteSelectedPayment(event.target.parentElement.parentElement.id);
+    UpdatePaymentElement();
+    updateServerTable();
+    updateSummary();
+  }
+});
+
+function deleteSelectedPayment(paymentChosen){
+  delete allPayments[paymentChosen];
+  allPayments=allPayments;
+};

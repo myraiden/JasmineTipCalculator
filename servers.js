@@ -46,10 +46,12 @@ function updateServerTable() {
 
 serverTbody.addEventListener('click', function(event){
   if (event.target.tagName==='BUTTON'){
-    //remove that row
-    let removeServer=event.target.parentElement.parentElement.id;
-    delete allServers[removeServer];
-    allServers=allServers;
+    deleteSelectedServer(event.target.parentElement.parentElement.id);
     updateServerTable();
   }
 });
+
+function deleteSelectedServer(serverChosen){
+  delete allServers[serverChosen];
+  allServers=allServers;
+};

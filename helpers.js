@@ -29,7 +29,7 @@ function appendTd(tr, value) {
 function appendDeleteBtn(newTr) {
   let buttonTd=document.createElement('td');
   let newTrButton=document.createElement("button");
-  newTrButton.innerText="Remove";
+  newTrButton.innerText="X";
   buttonTd.append(newTrButton);
 
   newTr.append(buttonTd);

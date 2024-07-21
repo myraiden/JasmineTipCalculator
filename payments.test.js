@@ -30,6 +30,15 @@ describe("Payments test (with setup and tear-down)", function() {
   
     });
 
+    it('should verify the payment is deleted from allPayments',function (){
+      deleteSelectedPayment(billAmtInput);
+      UpdatePaymentElement();
+      updateServerTable();
+      updateSummary();
+      expect(Object.keys(allPayments).length).toEqual(0);
+  
+    });
+
     afterEach(function() {
       // teardown logic
       billAmtInput.value='';
